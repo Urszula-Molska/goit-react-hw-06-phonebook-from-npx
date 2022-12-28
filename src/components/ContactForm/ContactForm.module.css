@@ -1,0 +1,12 @@
+input,
+button,
+label {
+  width: 200px;
+  margin-bottom: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
