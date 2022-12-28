@@ -84,10 +84,7 @@ export class App extends Component {
     return (
       <div>
         <Section>
-          <a
-            className={css.repo}
-            href="https://github.com/Urszula-Molska/goit-react-hw-02-phonebook"
-          >
+          <a href="https://github.com/Urszula-Molska/goit-react-hw-02-phonebook">
             https://github.com/Urszula-Molska/goit-react-hw-02-phonebook/
           </a>
         </Section>
