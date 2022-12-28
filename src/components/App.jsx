@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { ContactForm } from './ContactForm/ContactForm';
+import { Section } from './Section/Section';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
 import css from '../index.css';
@@ -82,21 +83,31 @@ export class App extends Component {
 
     return (
       <div>
-        <h2>Phonebook </h2>
-        <ContactForm formSubmit={this.AddContact} />
-        <h2>Contacts</h2>
-        <Filter inputFilter={this.filterChange} />
-        {filter.length === 0 ? (
-          <ContactList
-            removeContact={this.deleteContact}
-            contactLIST={contacts}
-          />
-        ) : (
-          <ContactList
-            removeContact={this.deleteContact}
-            contactLIST={this.filterContacts()}
-          />
-        )}
+        <Section>
+          <a
+            className={css.repo}
+            href="https://github.com/Urszula-Molska/goit-react-hw-02-phonebook"
+          >
+            https://github.com/Urszula-Molska/goit-react-hw-02-phonebook/
+          </a>
+        </Section>
+        <Section title="Phonebook">
+          <ContactForm formSubmit={this.AddContact} />
+        </Section>
+        <Section title="Contacts">
+          <Filter inputFilter={this.filterChange} />
+          {filter.length === 0 ? (
+            <ContactList
+              removeContact={this.deleteContact}
+              contactLIST={contacts}
+            />
+          ) : (
+            <ContactList
+              removeContact={this.deleteContact}
+              contactLIST={this.filterContacts()}
+            />
+          )}
+        </Section>
       </div>
     );
   }
