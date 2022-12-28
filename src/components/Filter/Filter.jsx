@@ -19,3 +19,6 @@ export class Filter extends Component {
     );
   }
 }
+Filter.propTypes = {
+  inputFilter: PropTypes.func,
+};

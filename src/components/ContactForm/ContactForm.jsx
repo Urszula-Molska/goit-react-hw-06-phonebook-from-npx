@@ -1,6 +1,6 @@
 import css from './ContactForm.module.css';
 
-export const ContactForm = ({ formSubmit, formValue, handleInput }) => (
+export const ContactForm = ({ formSubmit }) => (
   <div>
     <form onSubmit={formSubmit}>
       <label>Name</label>
@@ -25,3 +25,7 @@ export const ContactForm = ({ formSubmit, formValue, handleInput }) => (
     </form>
   </div>
 );
+
+ContactForm.propTypes = {
+  formSubmit: PropTypes.func,
+};
