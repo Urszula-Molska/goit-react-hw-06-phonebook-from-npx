@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { ContactForm } from './ContactForm/ContactForm';
-//import { Filter } from './ContactForm/ContactForm';
+import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
 import css from '../index.css';
 
@@ -13,41 +13,97 @@ export class App extends Component {
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
+    filter: '',
   };
 
-  handleSubmit = event => {
+  AddContact = event => {
+    const { contacts } = this.state;
     event.preventDefault();
     const form = event.currentTarget;
     const name = form.elements.name;
     const number = form.elements.number;
 
     const contact = {
+      id: nanoid(),
       name: name.value,
       number: number.value,
-      id: nanoid(),
     };
 
-    this.setState(prevState => ({
+    if (
+      contacts.find(
+        contact =>
+          contact.name.toLowerCase().trim() === name.value.toLowerCase().trim()
+      )
+    ) {
+      return alert(`${name.value} is already in contacts`);
+    } else {
+      this.setState({ contacts: [...this.state.contacts, ...[contact]] });
+      form.reset();
+    }
+
+    /*this.setState(prevState => ({
       contacts: [...prevState.contacts, contact],
-    }));
-    form.reset();
+    }));*/
+  };
+
+  filterChange = event => {
+    const { filter } = this.state;
+    this.setState({ filter: event.target.value.toLowerCase().trim() }, () => {
+      console.log(this.state.filter);
+    });
+  };
+
+  filterContacts = () => {
+    const { contacts, filter } = this.state;
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter)
+    );
+  };
+
+  deleteContact = event => {
+    console.log(event.target.dataset);
+    const { id } = event.target.dataset;
+    const { contacts } = this.state;
+    console.log(id);
+
+    const indeks = this.state.contacts.findIndex(
+      contact => contact.id === event.target.dataset.id
+    );
+    console.log('indeks', indeks);
+    const newContacts = [...this.state.contacts]; // make a separate copy of the array
+    if (indeks !== -1) {
+      newContacts.splice(indeks, 1);
+      this.setState({ contacts: newContacts });
+    }
   };
 
   render() {
-    const { contacts, name } = this.state;
-    console.log(this.state);
+    const { contacts, filter } = this.state;
+
     return (
       <div>
-        <h2>Phonebook</h2>
-        <ContactForm formSubmit={this.handleSubmit} />
+        <h2>Phonebook </h2>
+        <ContactForm formSubmit={this.AddContact} />
         <h2>Contacts</h2>
-        <ContactList contactLIST={contacts} />
+        <Filter inputFilter={this.filterChange} />
+        {filter.length === 0 ? (
+          <ContactList
+            removeContact={this.deleteContact}
+            contactLIST={contacts}
+          />
+        ) : (
+          <ContactList
+            removeContact={this.deleteContact}
+            contactLIST={this.filterContacts()}
+          />
+        )}
       </div>
     );
   }
 }
 
-/*state = {
-  contacts: [{ id: '1d', namE: '', number: '' }],
-  name: '',
-};*/
+/*
+handleChange = evt => {
+  const { name, value } = evt.target;
+  this.setState({ [name]: value });
+}*/
