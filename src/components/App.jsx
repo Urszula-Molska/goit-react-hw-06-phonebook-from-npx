@@ -4,7 +4,6 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { Section } from './Section/Section';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
-import css from '../index.css';
 
 export class App extends Component {
   state = {
@@ -48,10 +47,11 @@ export class App extends Component {
   };
 
   filterChange = event => {
-    const { filter } = this.state;
-    this.setState({ filter: event.target.value.toLowerCase().trim() }, () => {
+    this.setState({
+      filter: event.target.value.toLowerCase().trim(),
+    }); /*() => {
       console.log(this.state.filter);
-    });
+    });*/
   };
 
   filterContacts = () => {
@@ -62,15 +62,8 @@ export class App extends Component {
   };
 
   deleteContact = event => {
-    console.log(event.target.dataset);
     const { id } = event.target.dataset;
-    const { contacts } = this.state;
-    console.log(id);
-
-    const indeks = this.state.contacts.findIndex(
-      contact => contact.id === event.target.dataset.id
-    );
-    console.log('indeks', indeks);
+    const indeks = this.state.contacts.findIndex(contact => contact.id === id);
     const newContacts = [...this.state.contacts]; // make a separate copy of the array
     if (indeks !== -1) {
       newContacts.splice(indeks, 1);

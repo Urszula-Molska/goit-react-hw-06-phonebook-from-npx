@@ -1,4 +1,5 @@
 import css from './ContactForm.module.css';
+import PropTypes from 'prop-types';
 
 export const ContactForm = ({ formSubmit }) => (
   <div>
@@ -21,7 +22,9 @@ export const ContactForm = ({ formSubmit }) => (
         required
         placeholder="number in format: 325-152-154"
       />
-      <button type="submit">Add contact</button>
+      <button className={css.addContactBtn} type="submit">
+        Add contact
+      </button>
     </form>
   </div>
 );
