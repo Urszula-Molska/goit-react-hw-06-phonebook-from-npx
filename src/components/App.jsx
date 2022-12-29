@@ -78,7 +78,7 @@ export class App extends Component {
       <div>
         <Section>
           <a href="https://github.com/Urszula-Molska/goit-react-hw-02-phonebook/">
-            https://github.com/Urszula-Molska/goit-react-hw-02-phonebook/
+            https://github.com/Urszula-Molska/goit-react-hw-02-phonebook
           </a>
         </Section>
         <Section title="Phonebook">
