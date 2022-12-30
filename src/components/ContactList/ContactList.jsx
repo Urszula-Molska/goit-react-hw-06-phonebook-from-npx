@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 
 export class ContactList extends Component {
   render() {
-    const { contactLIST, removeContact } = this.props;
+    const { contactList, removeContact } = this.props;
     return (
       <>
         <ul className={css.contactList}>
-          {contactLIST.map(({ id, name, number }) => (
+          {contactList.map(({ id, name, number }) => (
             <li className={css.listItem} key={id} data-id={id}>
               <span className={css.contactInfo}>
                 {name}: {number}
@@ -30,6 +30,6 @@ export class ContactList extends Component {
   }
 }
 ContactList.propTypes = {
-  contactLIST: PropTypes.array,
+  contactList: PropTypes.array,
   removeContact: PropTypes.func,
 };

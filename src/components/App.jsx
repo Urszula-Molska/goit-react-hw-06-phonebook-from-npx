@@ -40,18 +40,12 @@ export class App extends Component {
       this.setState({ contacts: [...this.state.contacts, ...[contact]] });
       form.reset();
     }
-
-    /*this.setState(prevState => ({
-      contacts: [...prevState.contacts, contact],
-    }));*/
   };
 
   filterChange = event => {
     this.setState({
       filter: event.target.value.toLowerCase().trim(),
-    }); /*() => {
-      console.log(this.state.filter);
-    });*/
+    });
   };
 
   filterContacts = () => {
@@ -63,10 +57,10 @@ export class App extends Component {
 
   deleteContact = event => {
     const { id } = event.target.dataset;
-    const indeks = this.state.contacts.findIndex(contact => contact.id === id);
+    const index = this.state.contacts.findIndex(contact => contact.id === id);
     const newContacts = [...this.state.contacts]; // make a separate copy of the array
-    if (indeks !== -1) {
-      newContacts.splice(indeks, 1);
+    if (index !== -1) {
+      newContacts.splice(index, 1);
       this.setState({ contacts: newContacts });
     }
   };
@@ -92,12 +86,12 @@ export class App extends Component {
           {filter.length === 0 ? (
             <ContactList
               removeContact={this.deleteContact}
-              contactLIST={contacts}
+              contactList={contacts}
             />
           ) : (
             <ContactList
               removeContact={this.deleteContact}
-              contactLIST={this.filterContacts()}
+              contactList={this.filterContacts()}
             />
           )}
         </Section>
@@ -105,9 +99,3 @@ export class App extends Component {
     );
   }
 }
-
-/*
-handleChange = evt => {
-  const { name, value } = evt.target;
-  this.setState({ [name]: value });
-}*/
