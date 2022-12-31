@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
-//import axios, { isCancel, AxiosError } from 'axios';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Section } from './Section/Section';
 import { Filter } from './Filter/Filter';
@@ -14,7 +13,6 @@ export class App extends Component {
 
   componentDidMount() {
     const parsedContacts = JSON.parse(localStorage.getItem('contacts'));
-    //this.setState({ contacts: this.state.contacts });
     this.setState({ contacts: parsedContacts });
   }
 
@@ -80,11 +78,11 @@ export class App extends Component {
     return (
       <div>
         <Section>
-          <a href="https://urszula-molska.github.io/goit-react-hw-02-phonebook/">
-            https://urszula-molska.github.io/goit-react-hw-02-phonebook
+          <a href="https://urszula-molska.github.io/goit-react-hw-03-phonebook/">
+            https://urszula-molska.github.io/goit-react-hw-03-phonebook
           </a>
-          <a href="https://github.com/Urszula-Molska/goit-react-hw-02-phonebook">
-            https://github.com/Urszula-Molska/goit-react-hw-02-phonebook
+          <a href="https://github.com/Urszula-Molska/goit-react-hw-03-phonebook">
+            https://github.com/Urszula-Molska/goit-react-hw-03-phonebook
           </a>
         </Section>
         <Section title="Phonebook">
