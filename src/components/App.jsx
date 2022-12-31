@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
+//import axios, { isCancel, AxiosError } from 'axios';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Section } from './Section/Section';
 import { Filter } from './Filter/Filter';
@@ -7,14 +8,15 @@ import { ContactList } from './ContactList/ContactList';
 
 export class App extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts: [],
     filter: '',
   };
+
+  componentDidMount() {
+    const parsedContacts = JSON.parse(localStorage.getItem('contacts'));
+    //this.setState({ contacts: this.state.contacts });
+    this.setState({ contacts: parsedContacts });
+  }
 
   AddContact = event => {
     const { contacts } = this.state;
@@ -37,7 +39,12 @@ export class App extends Component {
     ) {
       return alert(`${name.value} is already in contacts`);
     } else {
-      this.setState({ contacts: [...this.state.contacts, ...[contact]] });
+      this.setState(
+        { contacts: [...this.state.contacts, ...[contact]] },
+        () => {
+          localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+        }
+      );
       form.reset();
     }
   };
@@ -61,7 +68,9 @@ export class App extends Component {
     const newContacts = [...this.state.contacts]; // make a separate copy of the array
     if (index !== -1) {
       newContacts.splice(index, 1);
-      this.setState({ contacts: newContacts });
+      this.setState({ contacts: newContacts }, () => {
+        localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+      });
     }
   };
 
