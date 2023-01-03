@@ -29,6 +29,7 @@ export class ContactList extends Component {
     );
   }
 }
+
 ContactList.propTypes = {
   contactList: PropTypes.array,
   removeContact: PropTypes.func,
