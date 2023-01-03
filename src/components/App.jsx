@@ -13,7 +13,10 @@ export class App extends Component {
 
   componentDidMount() {
     const parsedContacts = JSON.parse(localStorage.getItem('contacts'));
-    this.setState({ contacts: parsedContacts });
+
+    if (parsedContacts instanceof Array) {
+      this.setState({ contacts: parsedContacts });
+    }
   }
 
   AddContact = event => {
