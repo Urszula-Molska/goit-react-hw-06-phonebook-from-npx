@@ -17,6 +17,7 @@ export class App extends Component {
     if (parsedContacts instanceof Array) {
       this.setState({ contacts: parsedContacts });
     }
+    return;
   }
 
   AddContact = event => {
