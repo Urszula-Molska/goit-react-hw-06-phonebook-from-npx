@@ -14,7 +14,7 @@ export const App = () => {
     const parsedContacts = JSON.parse(localStorage.getItem('contacts'));
 
     if (parsedContacts instanceof Array) {
-      setContacts({ contacts: parsedContacts });
+      setContacts(parsedContacts);
     }
     return;
   }, []);
@@ -40,7 +40,7 @@ export const App = () => {
     ) {
       return alert(`${name.value} is already in contacts`);
     } else {
-      setContacts({ contacts: [...contacts, ...[contact]] });
+      setContacts([...contacts, ...[contact]]);
       /*, () => {
         localStorage.setItem('contacts', JSON.stringify(contacts));
       }*/
@@ -69,9 +69,8 @@ export const App = () => {
     const newContacts = [...contacts]; // make a separate copy of the array
     if (index !== -1) {
       newContacts.splice(index, 1);
-      setContacts({ contacts: newContacts }, () => {
-        localStorage.setItem('contacts', JSON.stringify(contacts));
-      });
+      setContacts(newContacts);
+      localStorage.setItem('contacts', JSON.stringify(contacts));
     }
   };
 
