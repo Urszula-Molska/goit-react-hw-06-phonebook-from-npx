@@ -82,11 +82,11 @@ export class App extends Component {
     return (
       <div>
         <Section>
-          <a href="https://urszula-molska.github.io/goit-react-hw-03-phonebook/">
-            https://urszula-molska.github.io/goit-react-hw-03-phonebook
+          <a href="https://urszula-molska.github.io/goit-react-hw-04-phonebook/">
+            https://urszula-molska.github.io/goit-react-hw-04-phonebook
           </a>
-          <a href="https://github.com/Urszula-Molska/goit-react-hw-03-phonebook">
-            https://github.com/Urszula-Molska/goit-react-hw-03-phonebook
+          <a href="https://github.com/Urszula-Molska/goit-react-hw-04-phonebook">
+            https://github.com/Urszula-Molska/goit-react-hw-04-phonebook
           </a>
         </Section>
         <Section title="Phonebook">
