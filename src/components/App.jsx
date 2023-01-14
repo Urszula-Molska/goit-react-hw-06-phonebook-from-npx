@@ -1,4 +1,3 @@
-//import { Component } from 'react';
 import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { ContactForm } from './ContactForm/ContactForm';
@@ -24,7 +23,6 @@ export const App = () => {
     const form = event.currentTarget;
     const name = form.elements.name;
     const number = form.elements.number;
-    console.log(event);
 
     const contact = {
       id: nanoid(),
@@ -41,9 +39,7 @@ export const App = () => {
       return alert(`${name.value} is already in contacts`);
     } else {
       setContacts([...contacts, ...[contact]]);
-      /*, () => {
-        localStorage.setItem('contacts', JSON.stringify(contacts));
-      }*/
+
       localStorage.setItem('contacts', JSON.stringify(contacts));
 
       form.reset();
@@ -57,7 +53,6 @@ export const App = () => {
   };
 
   const filterContacts = () => {
-    //const { contacts, filter } = this.state;
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter)
     );
