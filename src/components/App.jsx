@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Section } from './Section/Section';
-//import { Filter } from './Filter/Filter';
-//import { ContactList } from './ContactList/ContactList';
+import { Filter } from './Filter/Filter';
+import { ContactList } from './ContactList/ContactList';
 
 export const App = () => {
   const [contacts, setContacts] = useState([]);
@@ -24,6 +24,7 @@ export const App = () => {
     const form = event.currentTarget;
     const name = form.elements.name;
     const number = form.elements.number;
+    console.log(event);
 
     const contact = {
       id: nanoid(),
@@ -85,12 +86,9 @@ export const App = () => {
         </a>
       </Section>
       <Section title="Phonebook">
-        <ContactForm formSubmit={AddContact()} />
+        <ContactForm formSubmit={AddContact} />
       </Section>
-    </div>
-  );
-};
-/*<Section title="Contacts">
+      <Section title="Contacts">
         <Filter inputFilter={filterChange} />
         {filter.length === 0 ? (
           <ContactList removeContact={deleteContact} contactList={contacts} />
@@ -100,4 +98,7 @@ export const App = () => {
             contactList={filterContacts}
           />
         )}
-      </Section>*/
+      </Section>
+    </div>
+  );
+};
